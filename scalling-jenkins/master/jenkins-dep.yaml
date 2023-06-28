@@ -23,5 +23,13 @@
       spec:
         containers:
           - name: "jenkins-master"
-            image: "keaz/jenkins-master:alpine"
+            image: "deekshithsn/jenkinskubernetes:4.0"
             imagePullPolicy: "IfNotPresent"
+            env:
+              - name: JAVA_OPTS
+                value: -Djenkins.install.runSetupWizard=false
+                ports:
+                  - name: http-port
+                    containerport: 8080
+                  - name: jnlp-port
+                    containerport: 50000
